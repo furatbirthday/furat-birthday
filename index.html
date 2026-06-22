@@ -51,12 +51,6 @@ h1 {
     text-shadow: 0 3px 10px rgba(0,0,0,0.22);
 }
 
-.message {
-    font-size: 1.22rem;
-    line-height: 2;
-    margin-top: 15px;
-}
-
 .surprise-btn {
     margin-top: 30px;
     padding: 15px 35px;
@@ -160,7 +154,13 @@ h1 {
     line-height: 2.1;
 }
 
-/* قلوب بالخلفية */
+.final-line {
+    margin-top: 15px;
+    font-size: 1.35rem;
+    font-weight: bold;
+}
+
+/* قلوب ونجوم بالخلفية */
 .heart {
     position: fixed;
     color: white;
@@ -186,12 +186,6 @@ h1 {
     animation: popConfetti 1.8s ease forwards;
     pointer-events: none;
     z-index: 999;
-}
-
-.final-line {
-    margin-top: 15px;
-    font-size: 1.35rem;
-    font-weight: bold;
 }
 
 /* Animations */
@@ -283,11 +277,6 @@ h1 {
         font-size: 2rem;
     }
 
-    .message {
-        font-size: 1.05rem;
-        line-height: 1.9;
-    }
-
     .surprise-btn {
         font-size: 16px;
         padding: 13px 25px;
@@ -308,10 +297,9 @@ h1 {
 <body>
 
 <div class="card">
-    <h1>🎂 عيد ميلاد سعيد  فرات ❤️</h1>
+    <h1>🎂 عيد ميلاد سعيد يا فرات ❤️</h1>
 
-
-    <button class="surprise-btn" onclick="openGift()">🎁 افتحي الهدية فرات</button>
+    <button class="surprise-btn" onclick="openGift()">🎁 افتحي الهدية يا فرات</button>
 
     <div id="gift" class="gift-box-area">
         <div class="gift-box">
