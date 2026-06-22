@@ -14,11 +14,12 @@
 
 body {
     min-height: 100vh;
-    overflow: hidden;
+    overflow-x: hidden;
     font-family: Tahoma, Arial, sans-serif;
     display: flex;
     justify-content: center;
     align-items: center;
+    padding: 25px 15px;
     background: linear-gradient(-45deg, #ff758c, #ff7eb3, #ffb199, #ffd194);
     background-size: 400% 400%;
     animation: bgMove 10s ease infinite;
@@ -31,36 +32,36 @@ body {
 }
 
 .card {
-    width: 90%;
-    max-width: 720px;
-    background: rgba(255, 255, 255, 0.20);
-    backdrop-filter: blur(12px);
+    width: 95%;
+    max-width: 760px;
+    background: rgba(255, 255, 255, 0.22);
+    backdrop-filter: blur(13px);
     padding: 38px 28px;
-    border-radius: 28px;
+    border-radius: 30px;
     text-align: center;
     color: white;
     z-index: 10;
-    box-shadow: 0 15px 40px rgba(0, 0, 0, 0.25);
+    box-shadow: 0 15px 45px rgba(0, 0, 0, 0.25);
     border: 1px solid rgba(255, 255, 255, 0.35);
 }
 
 h1 {
     font-size: 2.8rem;
     margin-bottom: 20px;
-    text-shadow: 0 3px 10px rgba(0,0,0,0.2);
+    text-shadow: 0 3px 10px rgba(0,0,0,0.22);
 }
 
 .message {
-    font-size: 1.25rem;
+    font-size: 1.22rem;
     line-height: 2;
     margin-top: 15px;
 }
 
-button {
-    margin-top: 28px;
+.surprise-btn {
+    margin-top: 30px;
     padding: 15px 35px;
     border: none;
-    border-radius: 14px;
+    border-radius: 16px;
     background: white;
     color: #ff4d88;
     font-size: 19px;
@@ -70,33 +71,168 @@ button {
     box-shadow: 0 8px 20px rgba(0,0,0,0.18);
 }
 
-button:hover {
+.surprise-btn:hover {
     transform: scale(1.07);
 }
 
-#gift {
+.surprise-btn:disabled {
+    cursor: default;
+}
+
+/* منطقة الهدية */
+.gift-box-area {
     display: none;
-    margin-top: 28px;
-    padding: 22px;
-    border-radius: 18px;
-    background: rgba(255,255,255,0.22);
-    font-size: 1.35rem;
-    line-height: 2;
-    animation: fadeIn 1s ease;
+    margin-top: 35px;
+    position: relative;
+    animation: fadeIn 0.8s ease;
 }
 
-@keyframes fadeIn {
-    from { opacity: 0; transform: translateY(15px); }
-    to { opacity: 1; transform: translateY(0); }
+.gift-box {
+    width: 150px;
+    height: 130px;
+    margin: 0 auto 20px;
+    position: relative;
+    animation: bounceGift 1.1s infinite alternate;
 }
 
-.heart {
+.gift-body {
+    width: 150px;
+    height: 95px;
+    background: #ff4d88;
+    border-radius: 14px;
     position: absolute;
+    bottom: 0;
+    box-shadow: 0 10px 25px rgba(0,0,0,0.25);
+}
+
+.gift-lid {
+    width: 170px;
+    height: 38px;
+    background: #ffffff;
+    border-radius: 12px;
+    position: absolute;
+    top: 0;
+    left: -10px;
+    z-index: 3;
+    animation: openLid 1.2s ease forwards;
+    transform-origin: left bottom;
+}
+
+.gift-ribbon-vertical {
+    width: 30px;
+    height: 130px;
+    background: #fff;
+    position: absolute;
+    left: 60px;
+    bottom: 0;
+    z-index: 4;
+    border-radius: 8px;
+}
+
+.gift-ribbon-horizontal {
+    width: 150px;
+    height: 25px;
+    background: #fff;
+    position: absolute;
+    left: 0;
+    bottom: 38px;
+    z-index: 4;
+}
+
+.gift-letter {
+    display: none;
+    background: rgba(255,255,255,0.31);
+    padding: 28px 23px;
+    border-radius: 24px;
+    margin-top: 25px;
+    animation: letterUp 1.2s ease forwards;
+    box-shadow: 0 12px 32px rgba(0,0,0,0.20);
+    border: 1px solid rgba(255,255,255,0.45);
+}
+
+.gift-letter h2 {
+    margin-bottom: 17px;
+    font-size: 1.75rem;
+}
+
+.gift-letter p {
+    font-size: 1.18rem;
+    line-height: 2.1;
+}
+
+/* قلوب بالخلفية */
+.heart {
+    position: fixed;
     color: white;
     font-size: 24px;
     animation: floatHeart linear infinite;
     opacity: 0.9;
     pointer-events: none;
+    z-index: 1;
+}
+
+.sparkle {
+    position: fixed;
+    color: #fff;
+    font-size: 18px;
+    animation: sparkleMove linear infinite;
+    pointer-events: none;
+    z-index: 1;
+}
+
+.confetti {
+    position: fixed;
+    font-size: 25px;
+    animation: popConfetti 1.8s ease forwards;
+    pointer-events: none;
+    z-index: 999;
+}
+
+.final-line {
+    margin-top: 15px;
+    font-size: 1.35rem;
+    font-weight: bold;
+}
+
+/* Animations */
+@keyframes fadeIn {
+    from { 
+        opacity: 0; 
+        transform: translateY(15px); 
+    }
+    to { 
+        opacity: 1; 
+        transform: translateY(0); 
+    }
+}
+
+@keyframes bounceGift {
+    from {
+        transform: translateY(0);
+    }
+    to {
+        transform: translateY(-10px);
+    }
+}
+
+@keyframes openLid {
+    0% {
+        transform: rotate(0deg) translateY(0);
+    }
+    100% {
+        transform: rotate(-30deg) translateY(-38px);
+    }
+}
+
+@keyframes letterUp {
+    from {
+        opacity: 0;
+        transform: translateY(35px) scale(0.95);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+    }
 }
 
 @keyframes floatHeart {
@@ -110,14 +246,6 @@ button:hover {
     }
 }
 
-.sparkle {
-    position: absolute;
-    color: #fff;
-    font-size: 18px;
-    animation: sparkleMove linear infinite;
-    pointer-events: none;
-}
-
 @keyframes sparkleMove {
     from {
         transform: translateY(100vh);
@@ -129,7 +257,28 @@ button:hover {
     }
 }
 
+@keyframes popConfetti {
+    0% {
+        opacity: 1;
+        transform: translate(0, 0) scale(0.5);
+    }
+    100% {
+        opacity: 0;
+        transform: translate(var(--x), var(--y)) scale(1.4) rotate(360deg);
+    }
+}
+
+/* للموبايل */
 @media (max-width: 600px) {
+    body {
+        align-items: flex-start;
+    }
+
+    .card {
+        padding: 30px 20px;
+        margin-top: 15px;
+    }
+
     h1 {
         font-size: 2rem;
     }
@@ -139,13 +288,18 @@ button:hover {
         line-height: 1.9;
     }
 
-    .card {
-        padding: 30px 20px;
+    .surprise-btn {
+        font-size: 16px;
+        padding: 13px 25px;
     }
 
-    button {
-        font-size: 16px;
-        padding: 13px 28px;
+    .gift-letter h2 {
+        font-size: 1.45rem;
+    }
+
+    .gift-letter p {
+        font-size: 1.02rem;
+        line-height: 2;
     }
 }
 </style>
@@ -167,18 +321,59 @@ button:hover {
         كل سنة وإنتِ بخير، وتبقي بخير وفرح دائم. 🌷
     </div>
 
-    <button onclick="openGift()">🎁 افتحي المفاجأة</button>
+    <button class="surprise-btn" onclick="openGift()">🎁 افتحي الهدية يا فرات</button>
 
-    <div id="gift">
-        ❤️ فرات ❤️<br>
-        أتمنى تكون أيامك الجاية أجمل من كل اللي فات،<br>
-        ومليانة راحة، ضحكة، وفرح ما ينتهي. 🎉🎂🌹
+    <div id="gift" class="gift-box-area">
+        <div class="gift-box">
+            <div class="gift-lid"></div>
+            <div class="gift-body"></div>
+            <div class="gift-ribbon-vertical"></div>
+            <div class="gift-ribbon-horizontal"></div>
+        </div>
+
+        <div class="gift-letter">
+            <h2>رسالة صغيرة إلكِ 🌷</h2>
+
+            <p>
+                يمكن المعايدة إجت متأخرة شوي،  
+                بس والله وجودك وقيمتك ما كانوا يومًا منسيين.<br><br>
+
+                بتمنى تكون سنتك الجديدة أحنّ عليكِ،  
+                وأجمل من كل اللي راح،  
+                ومليانة راحة، ضحكة، وطمأنينة من القلب.<br><br>
+
+                وإذا مرّ بينا زعل أو سوء فهم،  
+                فالله يسامح الجميع، ويكتب لنا الأيام الطيبة.<br><br>
+
+                كل سنة وإنتِ بخير يا فرات،  
+                وتبقي دايمًا بخير وفرح وسلام. ❤️
+            </p>
+
+            <div class="final-line">
+                🎂 كل عام وإنتِ الأجمل 🌷
+            </div>
+        </div>
     </div>
 </div>
 
 <script>
 function openGift() {
-    document.getElementById("gift").style.display = "block";
+    const gift = document.getElementById("gift");
+    const letter = document.querySelector(".gift-letter");
+    const button = document.querySelector(".surprise-btn");
+
+    gift.style.display = "block";
+    button.innerHTML = "❤️ الهدية انفتحت";
+    button.disabled = true;
+    button.style.opacity = "0.85";
+
+    setTimeout(() => {
+        letter.style.display = "block";
+    }, 950);
+
+    for (let i = 0; i < 45; i++) {
+        setTimeout(createConfetti, i * 45);
+    }
 }
 
 function createHeart() {
@@ -213,8 +408,27 @@ function createSparkle() {
     }, 9000);
 }
 
-setInterval(createHeart, 300);
-setInterval(createSparkle, 700);
+function createConfetti() {
+    const symbols = ["❤️", "✨", "🌷", "🎉", "💖", "🎂"];
+    const confetti = document.createElement("div");
+
+    confetti.classList.add("confetti");
+    confetti.innerHTML = symbols[Math.floor(Math.random() * symbols.length)];
+
+    confetti.style.left = "50%";
+    confetti.style.top = "50%";
+    confetti.style.setProperty("--x", (Math.random() * 520 - 260) + "px");
+    confetti.style.setProperty("--y", (Math.random() * -360 - 80) + "px");
+
+    document.body.appendChild(confetti);
+
+    setTimeout(() => {
+        confetti.remove();
+    }, 1800);
+}
+
+setInterval(createHeart, 350);
+setInterval(createSparkle, 800);
 </script>
 
 </body>
