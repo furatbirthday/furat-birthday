@@ -1,4 +1,5 @@
 <!DOCTYPE html>
+
 <html lang="ar" dir="rtl">
 <head>
 <meta charset="UTF-8">
@@ -23,12 +24,162 @@ body {
     background: linear-gradient(-45deg, #ff758c, #ff7eb3, #ffb199, #ffd194);
     background-size: 400% 400%;
     animation: bgMove 10s ease infinite;
+    position: relative;
 }
 
 @keyframes bgMove {
     0% { background-position: 0% 50%; }
     50% { background-position: 100% 50%; }
     100% { background-position: 0% 50%; }
+}
+
+/* دوائر ضوء متحركة */
+.glow {
+    position: fixed;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.18);
+    filter: blur(2px);
+    pointer-events: none;
+    z-index: 0;
+    animation: glowMove 7s ease-in-out infinite alternate;
+}
+
+.glow.one {
+    width: 180px;
+    height: 180px;
+    top: 8%;
+    right: 7%;
+}
+
+.glow.two {
+    width: 130px;
+    height: 130px;
+    bottom: 13%;
+    left: 8%;
+    animation-delay: 1.3s;
+}
+
+.glow.three {
+    width: 95px;
+    height: 95px;
+    top: 65%;
+    right: 15%;
+    animation-delay: 2.5s;
+}
+
+@keyframes glowMove {
+    from {
+        transform: translateY(0) scale(1);
+        opacity: 0.4;
+    }
+    to {
+        transform: translateY(-35px) scale(1.2);
+        opacity: 0.75;
+    }
+}
+
+/* بالونات متحركة */
+.balloon {
+    position: fixed;
+    width: 58px;
+    height: 72px;
+    border-radius: 50% 50% 46% 46%;
+    opacity: 0.85;
+    z-index: 2;
+    pointer-events: none;
+    animation: balloonFloat 6s ease-in-out infinite;
+}
+
+.balloon::before {
+    content: "";
+    position: absolute;
+    width: 12px;
+    height: 10px;
+    background: inherit;
+    left: 23px;
+    top: 66px;
+    transform: rotate(45deg);
+}
+
+.balloon::after {
+    content: "";
+    position: absolute;
+    width: 2px;
+    height: 85px;
+    background: rgba(255, 255, 255, 0.65);
+    left: 50%;
+    top: 72px;
+}
+
+.balloon.b1 {
+    background: #ffffff;
+    top: 16%;
+    left: 7%;
+}
+
+.balloon.b2 {
+    background: #ff4d88;
+    top: 22%;
+    right: 7%;
+    animation-delay: 1.4s;
+}
+
+.balloon.b3 {
+    background: #ffd1dc;
+    bottom: 18%;
+    left: 10%;
+    animation-delay: 2.3s;
+}
+
+@keyframes balloonFloat {
+    0%, 100% {
+        transform: translateY(0) rotate(-5deg);
+    }
+    50% {
+        transform: translateY(-35px) rotate(6deg);
+    }
+}
+
+/* رسومات صغيرة عائمة */
+.floating-drawing {
+    position: fixed;
+    font-size: 34px;
+    z-index: 3;
+    pointer-events: none;
+    opacity: 0.85;
+    animation: drawingFloat 5.5s ease-in-out infinite;
+}
+
+.floating-drawing.d1 {
+    top: 12%;
+    left: 18%;
+}
+
+.floating-drawing.d2 {
+    top: 12%;
+    right: 18%;
+    animation-delay: 1.2s;
+}
+
+.floating-drawing.d3 {
+    bottom: 13%;
+    right: 12%;
+    animation-delay: 2s;
+}
+
+.floating-drawing.d4 {
+    bottom: 12%;
+    left: 18%;
+    animation-delay: 2.7s;
+}
+
+@keyframes drawingFloat {
+    0%, 100% {
+        transform: translateY(0) rotate(-8deg) scale(1);
+    }
+    50% {
+        transform: translateY(-24px) rotate(8deg) scale(1.12);
+    }
 }
 
 .card {
@@ -43,12 +194,124 @@ body {
     z-index: 10;
     box-shadow: 0 15px 45px rgba(0, 0, 0, 0.25);
     border: 1px solid rgba(255, 255, 255, 0.35);
+    position: relative;
 }
 
 h1 {
     font-size: 2.8rem;
     margin-bottom: 20px;
     text-shadow: 0 3px 10px rgba(0,0,0,0.22);
+    animation: titlePulse 2.2s ease-in-out infinite;
+}
+
+@keyframes titlePulse {
+    0%, 100% {
+        transform: scale(1);
+    }
+    50% {
+        transform: scale(1.035);
+    }
+}
+
+/* كيكة متحركة */
+.cake {
+    width: 190px;
+    height: 140px;
+    margin: 0 auto 15px;
+    position: relative;
+    animation: cakeFloat 2.6s ease-in-out infinite;
+}
+
+.cake-plate {
+    width: 195px;
+    height: 18px;
+    background: rgba(255, 255, 255, 0.88);
+    border-radius: 50%;
+    position: absolute;
+    bottom: 0;
+    left: -2px;
+}
+
+.cake-layer-bottom {
+    width: 160px;
+    height: 55px;
+    background: #ff4d88;
+    border-radius: 14px 14px 18px 18px;
+    position: absolute;
+    bottom: 15px;
+    left: 15px;
+    box-shadow: 0 8px 20px rgba(0,0,0,0.18);
+}
+
+.cake-layer-top {
+    width: 125px;
+    height: 45px;
+    background: #ffffff;
+    border-radius: 14px 14px 12px 12px;
+    position: absolute;
+    bottom: 68px;
+    left: 32px;
+}
+
+.cake-drip {
+    width: 18px;
+    height: 28px;
+    background: #ffffff;
+    border-radius: 0 0 12px 12px;
+    position: absolute;
+    bottom: 47px;
+}
+
+.cake-drip.drp1 { left: 42px; }
+.cake-drip.drp2 { left: 85px; height: 22px; }
+.cake-drip.drp3 { left: 127px; height: 30px; }
+
+.candle {
+    width: 10px;
+    height: 34px;
+    background: #ffd194;
+    border-radius: 6px;
+    position: absolute;
+    bottom: 111px;
+}
+
+.candle.c1 { left: 67px; }
+.candle.c2 { left: 91px; }
+.candle.c3 { left: 115px; }
+
+.flame {
+    width: 14px;
+    height: 20px;
+    background: #fff176;
+    border-radius: 50% 50% 50% 50%;
+    position: absolute;
+    bottom: 142px;
+    box-shadow: 0 0 18px rgba(255, 241, 118, 0.95);
+    animation: flameFlicker 0.45s infinite alternate;
+}
+
+.flame.f1 { left: 65px; }
+.flame.f2 { left: 89px; animation-delay: 0.1s; }
+.flame.f3 { left: 113px; animation-delay: 0.2s; }
+
+@keyframes cakeFloat {
+    0%, 100% {
+        transform: translateY(0);
+    }
+    50% {
+        transform: translateY(-8px);
+    }
+}
+
+@keyframes flameFlicker {
+    from {
+        transform: scale(1) rotate(-5deg);
+        opacity: 0.85;
+    }
+    to {
+        transform: scale(1.25) rotate(6deg);
+        opacity: 1;
+    }
 }
 
 .surprise-btn {
@@ -268,6 +531,40 @@ h1 {
         align-items: flex-start;
     }
 
+    .balloon {
+        width: 42px;
+        height: 56px;
+    }
+
+    .balloon::after {
+        height: 55px;
+        top: 55px;
+    }
+
+    .floating-drawing {
+        font-size: 26px;
+    }
+
+    .floating-drawing.d1 {
+        top: 7%;
+        left: 6%;
+    }
+
+    .floating-drawing.d2 {
+        top: 8%;
+        right: 7%;
+    }
+
+    .floating-drawing.d3 {
+        bottom: 6%;
+        right: 5%;
+    }
+
+    .floating-drawing.d4 {
+        bottom: 6%;
+        left: 5%;
+    }
+
     .card {
         padding: 30px 20px;
         margin-top: 15px;
@@ -275,6 +572,11 @@ h1 {
 
     h1 {
         font-size: 2rem;
+    }
+
+    .cake {
+        transform: scale(0.88);
+        margin-bottom: 5px;
     }
 
     .surprise-btn {
@@ -292,48 +594,82 @@ h1 {
     }
 }
 </style>
+
 </head>
 
 <body>
 
+<div class="glow one"></div>
+<div class="glow two"></div>
+<div class="glow three"></div>
+
+<div class="balloon b1"></div>
+<div class="balloon b2"></div>
+<div class="balloon b3"></div>
+
+<div class="floating-drawing d1">🎀</div>
+<div class="floating-drawing d2">💝</div>
+<div class="floating-drawing d3">🌷</div>
+<div class="floating-drawing d4">🎈</div>
+
 <div class="card">
     <h1>🎂 عيد ميلاد سعيد يا فرات ❤️</h1>
 
-    <button class="surprise-btn" onclick="openGift()">🎁 افتحي الهدية يا فرات</button>
+```
+<div class="cake">
+    <div class="flame f1"></div>
+    <div class="flame f2"></div>
+    <div class="flame f3"></div>
 
-    <div id="gift" class="gift-box-area">
-        <div class="gift-box">
-            <div class="gift-lid"></div>
-            <div class="gift-body"></div>
-            <div class="gift-ribbon-vertical"></div>
-            <div class="gift-ribbon-horizontal"></div>
-        </div>
+    <div class="candle c1"></div>
+    <div class="candle c2"></div>
+    <div class="candle c3"></div>
 
-        <div class="gift-letter">
-            <h2>رسالة صغيرة إلكِ 🌷</h2>
+    <div class="cake-layer-top"></div>
+    <div class="cake-drip drp1"></div>
+    <div class="cake-drip drp2"></div>
+    <div class="cake-drip drp3"></div>
+    <div class="cake-layer-bottom"></div>
+    <div class="cake-plate"></div>
+</div>
 
-            <p>
-                يمكن المعايدة إجت متأخرة شوي،  
-                بس قيمتك ما كانت يومًا منسية.<br><br>
+<button class="surprise-btn" onclick="openGift()">🎁 افتحي الهدية يا فرات</button>
 
-                بتمنى تكون سنتك الجديدة أحنّ عليكِ،  
-                وأجمل من كل اللي راح،  
-                ومليانة راحة، ضحكة، وطمأنينة من القلب.<br><br>
+<div id="gift" class="gift-box-area">
+    <div class="gift-box">
+        <div class="gift-lid"></div>
+        <div class="gift-body"></div>
+        <div class="gift-ribbon-vertical"></div>
+        <div class="gift-ribbon-horizontal"></div>
+    </div>
 
-                بعرف مرّ بينا زعل ومشاكل كثير
-                لكن عمري ما تمنيت لك الا كل خير وسعادة
-                لأنك كنت عزيزة على قلبي،  
-                فالله يسامح الجميع، ويكتب لنا الأيام الطيبة.<br><br>
+    <div class="gift-letter">
+        <h2>رسالة صغيرة إلكِ 🌷</h2>
 
-                كل سنة وإنتِ بخير يا فرات،  
-                وتبقي دايمًا بخير وفرح وسلام. ❤️
-            </p>
+        <p>
+            يمكن المعايدة إجت متأخرة شوي،  
+            بس قيمتك ما كانت يومًا منسية.<br><br>
 
-            <div class="final-line">
-                🎂 كل عام وإنتِ أسعد 🌷
-            </div>
+            بتمنى تكون سنتك الجديدة أحنّ عليكِ،  
+            وأجمل من كل اللي راح،  
+            ومليانة راحة، ضحكة، وطمأنينة من القلب.<br><br>
+
+            بعرف مرّ بينا زعل ومشاكل كثير<br>
+            لكن عمري ما تمنيت لك إلا كل خير وسعادة<br>
+            لأنك كنتِ عزيزة على قلبي،  
+            فالله يسامح الجميع، ويكتب لنا الأيام الطيبة.<br><br>
+
+            كل سنة وإنتِ بخير يا فرات،  
+            وتبقي دايمًا بخير وفرح وسلام. ❤️
+        </p>
+
+        <div class="final-line">
+            🎂 كل عام وإنتِ أسعد 🌷
         </div>
     </div>
+</div>
+```
+
 </div>
 
 <script>
@@ -351,8 +687,8 @@ function openGift() {
         letter.style.display = "block";
     }, 950);
 
-    for (let i = 0; i < 45; i++) {
-        setTimeout(createConfetti, i * 45);
+    for (let i = 0; i < 70; i++) {
+        setTimeout(createConfetti, i * 35);
     }
 }
 
@@ -389,7 +725,7 @@ function createSparkle() {
 }
 
 function createConfetti() {
-    const symbols = ["❤️", "✨", "🌷", "🎉", "💖", "🎂"];
+    const symbols = ["❤️", "✨", "🌷", "🎉", "💖", "🎂", "🎈", "🎁", "🌟"];
     const confetti = document.createElement("div");
 
     confetti.classList.add("confetti");
@@ -397,8 +733,8 @@ function createConfetti() {
 
     confetti.style.left = "50%";
     confetti.style.top = "50%";
-    confetti.style.setProperty("--x", (Math.random() * 520 - 260) + "px");
-    confetti.style.setProperty("--y", (Math.random() * -360 - 80) + "px");
+    confetti.style.setProperty("--x", (Math.random() * 600 - 300) + "px");
+    confetti.style.setProperty("--y", (Math.random() * -410 - 80) + "px");
 
     document.body.appendChild(confetti);
 
